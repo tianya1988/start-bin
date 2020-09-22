@@ -21,11 +21,11 @@ checkPortFun 3306
 
 echo "start mongod begin"
 systemctl start mongod
-checkPortFun 27017
+#checkPortFun 27017
 
 echo "start docker begin"
-#docker run -d --name=jupiter -p 127.0.0.1:5001:5001 --net=host --restart=always -v /opt/scsc/jupiter/config.ini:/opt/scsc/config.ini  scsc/api:0.5
-docker start  jupiter
+docker run -d -p 127.0.0.1:5001:5001 --name jupiter --restart=always -v /opt/scsc/Jupiter/config.ini:/opt/scsc/Jupiter/config.ini -v /opt/scsc/Jupiter/pocs:/opt/scsc/Jupiter/pocs -v /opt/scsc/Jupiter/dicts:/opt/scsc/Jupiter/dicts  -v /opt/scsc/Jupiter/update:/opt/scsc/Jupiter/update scsc/jupiter:0.7.1
+#docker start  jupiter
 sleep 2
 echo "start app-api begin"
 cd /opt/scsc/scsc-app-api

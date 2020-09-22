@@ -8,5 +8,6 @@ kill -9 $(ps -ef | grep "/opt/scsc/scsc-app-api" | grep -v "grep" | awk '{print 
 kill -9 $(ps -ef | grep "/opt/scsc/ti/manager" | grep -v "grep" | awk '{print $2}' | awk -F"/" '{ print $1 }')
 
 docker stop jupiter
+docker rm jupiter
 systemctl stop mysql
 systemctl stop mongod
