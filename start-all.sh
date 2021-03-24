@@ -43,12 +43,14 @@ sleep 3
 # rm -rf /data/zookeeper/*
 #cd /opt/soft/zookeeper-3.4.6/bin/
 #./zkServer.sh start
-#checkPortFun 2181
-#sleep 3
+systemctl start zookeeper
+checkPortFun 2181
+sleep 3
 #cd /opt/soft/kafka_2.11-1.0.0/bin
 #./kafka-server-start.sh -daemon ../config/server.properties
-#checkPortFun 6667
-#echo "start kafka success"
+systemctl start kafka	
+checkPortFun 6667
+echo "start kafka success"
 sleep 3
 echo "start collector success"
 rm -rf /usr/local/var/run/suricata.pid

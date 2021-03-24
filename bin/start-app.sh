@@ -16,7 +16,7 @@ checkPortFun(){
 }
 
 echo "start mysql begin"
-systemctl start mysql
+service mysqld start
 checkPortFun 3306
 
 echo "start mongod begin"
@@ -34,13 +34,16 @@ sh scsc-app-api.sh start
 checkPortFun 8214
 sleep 2
 echo "start flume step begin"
-/opt/apache-flume-1.8.0-bin/suricata.sh
-/opt/apache-flume-1.8.0-bin/suricata-alert.sh
+/opt/soft/apache-flume-1.8.0-bin/collectalert.sh
+/opt/soft/apache-flume-1.8.0-bin/collectpro.sh
+/opt/soft/apache-flume-1.8.0-bin/agentalert.sh
+/opt/soft/apache-flume-1.8.0-bin/agentpro.sh
 #echo "start flink cluster step begin"
 #/opt/soft/flink-1.9.1/bin/start-cluster.sh
-#checkPortFun 8081
-#sleep 2
-#echo "start flink app step begin"
+systemctl start flink
+checkPortFun 8081
+sleep 2
+echo "start flink app step begin"
 sleep 10
 /opt/scsc/apps/bin/log2es.sh
 sleep 5
